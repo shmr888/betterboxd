@@ -10,7 +10,8 @@ export const POST = async()=>{
             image:movie.node.primaryImage.url,
             releaseYear:movie.node.releaseYear.year,
             ratings:movie.node.ratingsSummary.aggregateRating,
-            genre:movie.node.titleGenres.genres.map((val)=>val.genre.text)
+            genre:movie.node.titleGenres.genres.map((val)=>val.genre.text),
+            plot:movie.node.plot.plotText.plainText
 
         }
     })
