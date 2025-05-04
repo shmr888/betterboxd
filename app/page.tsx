@@ -13,9 +13,10 @@ export default async function Home() {
   console.log(data.result);
 
   return (
-    <div className="bg-gradient-to-l from-gray-900 via-slate-800 to-gray-600 min-h-screen flex flex-col items-center">
+    
+    <div className="bg-gradient-to-l from-gray-900 via-slate-800 to-gray-600 min-h-screen flex flex-col items-center py-24">
       
-      <header className="text-center py-8">
+      <header className="text-center py-4">
         <h1 className="text-white text-6xl font-bold uppercase">Top 250 Rated Movies</h1>
         <p className="text-slate-200 mt-2">
           Top 250 movies as rated by regular IMDb voters. Source: 
@@ -23,14 +24,11 @@ export default async function Home() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4 max-w-6xl mx-auto">
         {data.result.map((movie) => (
-          <div key={movie.id} className="bg-black/30 backdrop-blur-lg rounded-lg flex flex-col items-center border-2 border-gray-700 transition-transform transform hover:scale-105">
-            <HoverCard>
-              <HoverCardTrigger>
-                <Image src={movie.image} alt={movie.title} width={1920} height={1080} className="rounded-md h-96 object-cover" />
-              </HoverCardTrigger>
-              <HoverCardContent className="flex flex-col gap-2 bg-black/60 backdrop-blur-lg p-4 rounded-lg">
+          <div key={movie.id} className="bg-black/30 backdrop-blur-lg relative rounded-lg flex flex-col items-center border-2 border-gray-700 transform hover:scale-105 group transition-all duration-300 ease-out">
+                <Image src={movie.image} alt={movie.title} width={1920} height={1080} className="rounded-md h-96 object-cover " />
+                <div className="hidden group-hover:flex absolute flex-col justify-between top-0 w-full h-full px-4 py-4 bg-black/60 backdrop-blur-lg rounded-lg items-center">
                 <div className="flex flex-col gap-1 items-center">
                   <p className="text-center font-bold uppercase text-amber-400">{movie.title}</p>
                   <div className="flex gap-4">
@@ -44,9 +42,7 @@ export default async function Home() {
                     <p key={index} className="bg-amber-700/80 px-4 py-0.5 rounded-full font-bold text-center text-amber-400">{genre}</p>
                   ))}
                 </div>
-              </HoverCardContent>
-            </HoverCard>
-          </div>
+          </div></div>
         ))}
       </div>
     </div>
