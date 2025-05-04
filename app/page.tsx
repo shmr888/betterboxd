@@ -4,6 +4,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { Bebas_Neue } from "next/font/google";
 
 export default async function Home() {
   const data = await (await fetch("http://localhost:3000/api/gettop250", {
@@ -13,7 +14,7 @@ export default async function Home() {
 
   return (
     <div className="bg-gradient-to-l from-gray-900 via-slate-800 to-gray-600 min-h-screen flex flex-col items-center">
-
+      
       <header className="text-center py-8">
         <h1 className="text-white text-6xl font-bold uppercase">Top 250 Rated Movies</h1>
         <p className="text-slate-200 mt-2">
