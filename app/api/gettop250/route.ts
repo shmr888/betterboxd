@@ -5,6 +5,7 @@ export const POST = async()=>{
     const site = await cheerio.fromURL('https://m.imdb.com/chart/top/');
     const data = JSON.parse(site("#__NEXT_DATA__").html()!).props.pageProps.pageData.chartTitles.edges.map((movie)=>{
         return {
+            id:movie.node.id,
             title:movie.node.titleText.text,
             image:movie.node.primaryImage.url,
             releaseYear:movie.node.releaseYear.year,
