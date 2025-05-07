@@ -12,7 +12,7 @@ const Searchbox = () => {
     const [data,setData] = useState([])
     useEffect(()=>{
         (async ()=>{
-            if (!debounceSearch) return
+            if (!debounceSearch) setData([])
             setLoading(true)
             const searchText = await(await(fetch('http://localhost:3000/api/getsearchrecommandations',{
                 method:"POST",
@@ -33,14 +33,15 @@ const Searchbox = () => {
         }}/>
         
         </div>
-        <div className="bg-blue-950 absolute top-10 w-full rounded-md p-4 ">
+        {data.length!=0 && <div  className="bg-blue-950 absolute top-10 w-full rounded-md p-4 ">
              {!loading?data.result?.map((movie,index)=>{
                 return <Link href={`/movie/${movie.id}`} className="p-1 border-b-1 flex gap-2 items-center hover:bg-neutral-900/20 cursor-pointer" key={index}> 
-                <Image src={movie.image} alt={movie.title} width={1920} height={1080} className="w-12 h-12 object-contain"/>
+                <Image src={movie?.image} alt={movie.title} width={1920} height={1080} className="w-12 h-12 object-contain"/>
                 <p className="text-sm">{movie.title}</p> </Link>
             }):"Loading..."} 
 
-        </div>
+        </div>}
+        
 
         
 

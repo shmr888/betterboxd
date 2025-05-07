@@ -29,16 +29,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
-        <Navbar/>
         
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-          >
+            >
             
-            {children}
+            <Navbar/>
+            <div className="pt-20 bg-neutral-900">
+            {children}</div>
           </ThemeProvider>
       </body>
     </html>
